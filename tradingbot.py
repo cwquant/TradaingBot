@@ -619,11 +619,6 @@ class Security():
         ax1.plot(x,predictions_df['mean'],color = 'red', linewidth = 1.75,label = 'Mean')
         ax1.plot(x,predictions_df['median'],color = 'cornflowerblue', linewidth = 1.75,label = 'Median')
         ax1.plot(x,predictions_df['Price'], color = 'gold', linewidth = 1.75, label = 'Real Price')
-        
-        #ax1.plot(x,predictions_df['acc'], label = 'l dist loc')
-        #ax1.plot(x,predictions_df['Var'], label = 'l dist ecdf')
-        #ax1.axhline(y=.5, color='white', alpha=.5)
-        #ax1.axhline(y=1, color='white', alpha=.5)
         plt.legend()
         
         ax2 = plt.subplot(514, sharex=ax1)
@@ -640,36 +635,19 @@ class Security():
         ax4.plot(x, predictions_df['tmode'], label = 'Mode',color='cornflowerblue')
         ax4.plot(x, predictions_df['yn_indicator'], label = 'Y_n Indicator',color='r')
         ax4.plot(x, predictions_df['xn_indicator'], label = 'X_n Indicator',color='limegreen')
-        #ax4.plot(x,predictions_df['mu_er'], label = 'mu_er',color='cornflowerblue')
-        #ax4.plot(x,predictions_df['Returns'], label = 'Actual Return', color = 'gold')
         ax4.axhline(y=0, color='white',alpha=.5)
         plt.legend()
         
         ax3 = plt.subplot(512, sharex=ax1)
         
         ax3.plot(x,predictions_df['gt'], label = 'gt')
-        #ax3.plot(x,predictions_df['Var'], label = 'Var')
-        #ax3.plot(x,(predictions_df['Var']+1).iloc[graph_index:].cumprod().to_list(), label = 'mu dist')
-        #ax3.plot(x,(predictions_df['l_dist'] + 1).cumprod(), label ='l_dist')
-        #ax3.plot(x,(predictions_df['er']+ 1).cumprod(), label = 'C_er')
-        #ax3.plot(x,(predictions_df['Returns']+ 1).iloc[graph_index:].cumprod().to_list(), label = 'Returns')
-        
-        #ax3.plot(x,predictions_df['P'], label = 'p')
-        #ax3.plot(x,predictions_df['P_.5'], label = 'p = .5')
-        #ax3.plot(x,predictions_df['P_erp'], label = 'p_er')
-        #ax3.plot(x,predictions_df['Real_P'], label = 'Real P')
         ax3.axhline(y=1, color='white',alpha=.5)
         plt.legend()
-        #y_logistic = predictions_df['drift'].iloc[graph_index:] - predictions_df['dti'].iloc[graph_index:]
+        
         
         ax5 = plt.subplot(515, sharex = ax1)
-        #ax5.plot(x,predictions_df['b'], label = 'b',color ='gold')
-        #ax5.plot(x,y_logistic.to_list(), label = 'logistic', color = 'gold')
         ax5.plot(x,(1 + predictions_df['drift']).cumprod(), label = 'drift',color ='cornflowerblue')
         ax5.plot(x,(1 + predictions_df['diffusion']), label = 'diffusion', color = 'lime')
-        #ax5.plot(x,(predictions_df['dti']).cumsum(), label = 'dti',color = 'red', alpha = .7)
-        #ax5.plot(x,(1 + predictions_df['er_b']).cumprod(), label = 'er_b')
-        #ax5.plot(x,(1 + predictions_df['er_d']).cumprod(), label = 'er_d')
         ax5.plot(x,(1 + predictions_df['Rt_avg']).cumprod(), label = 'rt_avg')
         ax5.plot(x,(1 + predictions_df['l_dist']).cumprod(), label = 'l_dist')
         ax5.plot(x,(1 + predictions_df['rand']).cumprod(), label = 'rand')
@@ -703,33 +681,11 @@ class Security():
         
         ax7 = plt.subplot(512)
         ax7.plot(x,predictions_df['lambda'], label = 'lambda')
-        
-        #ax7.plot(x,predictions_df['P_Test'], label = 'P_Test')
-        #ax7.plot(x,predictions_df['P_Calc'], label = 'P_Calc')
-        #ax7.plot(x,predictions_df['P'], label = 'P')
-        #ax7.plot(x,predictions_df['Real_P'], label = 'P Real')
-        #ax7.plot(x,[np.exp(np.sum(np.log1p(x))) - 1 for x in predictions_df['mu'].to_list()][len(predictions_df) - (T * 2):len(predictions_df)], label = 'C_MUlog')
-        #ax7.plot(x,(predictions_df['mu'] + 1).cumprod(), label = 'C_mu')
-        #ax7.plot(x,(predictions_df['Var']+1).cumprod(), label = 'GT')
-        #ax7.plot(x,(predictions_df['er']+ 1).cumprod(), label = 'C_er')
-        #ax7.plot(x,(predictions_df['Returns'] + 1).iloc[len(predictions_df) - (T * 2):len(predictions_df)].cumprod().to_list(), label = 'C_returns')
-        #ax7.plot(x,(predictions_df['Rt_avg']+ 1).cumprod(), label = 'C_Rt_avg')
-        #ax7.plot(x,(predictions_df['dti_mu']), label = 'C_dti_mu')
-        #ax7.plot(x,(predictions_df['acc']+ 1).cumprod(), label = 'Acceleration')
-        #ax7.plot(x,(predictions_df['l_dist']+ 1).cumprod(), label = 'l_dist')
-        #ax7.plot(x,predictions_df['cr'], label = 'cr')
-        #ax7.axhline(y=1, color='white',alpha=.5)
-        
         plt.legend()
         
         
         ax8 = plt.subplot(513, sharex = ax6)
         ax8.plot(x,predictions_df['mu_r'], label = 'Mu R')
-        #ax8.plot(x,(predictions_df['er_b']+1).cumprod(), label = 'er_b')
-        #ax8.plot(x,(predictions_df['er_d']+1).cumprod(), label = 'er_d')
-        #ax8.plot(x,((predictions_df['mu_r']) + 1).cumprod(), label = 'mu_r')
-        #ax8.plot(x,predictions_df['bayes'], label = 'bayes')
-        #ax8.axhline(y=1, color='white',alpha=.5)
         plt.legend()
 
         
@@ -737,13 +693,7 @@ class Security():
         
         ax9 = plt.subplot(515, sharex = ax6)
         ax9.plot(x,predictions_df['Y_N'], label = 'Y_n')
-        #ax9.plot(x,predictions_df['Y_NP'], label = 'Y_np')
-        #ax9.plot(x,predictions_df['Var'].iloc[len(predictions_df) - (T * 2):len(predictions_df)], label = 'Var')
-        
-        
         ax9.plot(x,predictions_df['bayes'], label = 'bayes')
-        #ax9.plot(x,predictions_df['P_Calc'].cumsum(), label = 'P_Calc')
-        #ax9.plot(x,predictions_df['P_Test'].cumsum(), label = 'P_Test')
         ax9.axhline(y=.5, color='white',alpha=.5)
         ax9.axhline(y=0, color='white',alpha=.5)
         ax9.axhline(y=1, color='white',alpha=.5)
@@ -752,7 +702,6 @@ class Security():
         ax10 = plt.subplot(514, sharex = ax6)
         
         ax10.plot(x,predictions_df['xn'], label = 'xn')
-        #ax10.plot(x,predictions_df['Var'].iloc[len(predictions_df) - (T * 2):len(predictions_df)], label = 'Var')
         plt.legend()
         plt.tight_layout()
         
@@ -803,21 +752,14 @@ class Security():
 
         ax3 = plt.subplot(514, sharex=ax1)
         ax3.plot(x,df['y_necdf'], label='y_necdf',color='cornflowerblue')
-        #ax3.plot(x,df['y_n_ecdfmax'], label='y_n_ecdfmax', color='springgreen',ls = '--')
-        #ax3.plot(x,df['y_n_ecdfmin'], label='y_n_ecdfmin',color='lightcoral',ls = '--')
         plt.legend()
 
         ax4 = plt.subplot(513, sharex=ax1)
-        #ax4.plot(x, df['x_nr'], label = 'x_nr',color='mediumseagreen')
         ax4.plot(x, df['x_nr_sma'], label = 'x_nr sma',color='seagreen')
-        #ax4.axhline(y=0, color='white')
-        #ax4.axhline(y=x_nmax, color='white',alpha=.5)
         plt.legend()
 
         ax5 = plt.subplot(515, sharex=ax1)
         ax5.plot(x,df['x_necdf'], label='x_necdf',color='cornflowerblue')
-        #ax5.plot(x,df['x_n_ecdfmax'], label='x_n_ecdfmax',color='springgreen',ls = '--')
-        #ax5.plot(x,df['x_n_ecdfmin'], label='x_n_ecdfmin',color='lightcoral',ls = '--')
         
         
         plt.legend()
@@ -875,74 +817,7 @@ class Security():
         ax1 = plt.subplot(111)
         ax1.plot(x, df['ltcm'],label='ltcm',color='cornflowerblue')
         ax1.plot(x, [np.sqrt(1/253) for x in np.arange(len(x))],label='1/253',color='white')
-
-
-        plt.show()
         
-        """
-        x3d = [i for i in np.arange(len(predictions_df) - (T * 2),len(predictions_df))]
-
-        fig = plt.figure()
-        ax3d = fig.add_subplot(111, projection='3d')
-        ax3d.plot(x3d,predictions_df['Price'],predictions_df['Volume'])
-        
-        fig, ax = plt.subplots(figsize=figsize)
-        ecdf_rs = (np.log1p(df['Returns'])).cumsum()
-        ecdf_rs = np.asarray([ecdf_rs[i]/(i+1) for i in np.arange(len(ecdf_rs))])
-        ax.plot(df['Date'],ecdf_rs,color='gold',label = 'CL_Returns')
-        ax.plot(df['Date'], (np.log1p(predictions_df['er']).cumsum() / [x for x in np.arange(1,len(predictions_df)+1)]).iloc[:len(ecdf_rs)],color='cornflowerblue',label = 'CL_ers')
-        ax.axhline(y=0, color='white',alpha=.5)
-        plt.legend()
-
-        x1 = np.linspace(start=min(df_rs),stop=max(df_rs),num=100)
-        y1 = ecdf(x1)
-        xlabels = np.asarray([round(x*100,2) for x in x1])
-        plt.figure(figsize=figsize)
-        sns.pointplot(x=xlabels, y=y1, ci = "sd",label='ECDF')
-        plt.legend()
-        ax = plt.gca()
-        ax.axhline(y=.5, color='white',alpha=.5)
-        plt.xticks(rotation=-45)
-        for label in ax.get_xaxis().get_ticklabels()[::2]:
-            label.set_visible(False)
-        plt.show()
-        
-        
-        auto_corr = []
-        auto_corrmax = []
-        lags = [x for x in np.arange(1,(T * 2)+1)]
-        for lag in lags:
-            auto_corr.append(df['Price'].autocorr(lag))
-        
-        print('len(auto_corr) =',len(auto_corr))
-
-        for i in np.arange(0,len(auto_corr) - (T) ):
-            auto_corrmax.append( ((auto_corr[i] + auto_corr[i + T//2] + auto_corr[i + T])/3) )
-        
-        print('len(auto_corrmax) =',len(auto_corrmax))
-        
-        
-
-        
-        plt.figure(figsize=figsize)
-        sns.pointplot(x=np.asarray([x for x in np.arange(1,len(auto_corrmax)+1)]), y=auto_corrmax, label='Autocorrelation Plot')
-        plt.legend()
-        plt.show()
-        auto_corr = []
-        lags = [x for x in np.arange(1,T_tmp,T_tmp//50)]
-        for lag in lags:
-            auto_corr.append(predictions_df['Price'].autocorr(lag))
-        
-        plt.figure(figsize=figsize)
-        sns.pointplot(x=np.asarray(lags), y=auto_corr, label='Autocorrelation Plot')
-        plt.legend()
-        
-        f, axes = plt.subplots(2,1, figsize = (15,8))
-        sns.despine(left=True)
-        sns.distplot(graph_a, bins = 150, ax=axes[0], label='Var')    sns.distplot(graph_p, bins = 150, ax=axes[1], label='P')
-        plt.legend()
-        plt.tight_layout()
-        """
         plt.show()
 
 
@@ -1116,8 +991,7 @@ class Security():
             y_nr = min(((1 - p) / p) ** x_nr, 1)
             list_dict['y_nr'].append(y_nr)
 
-            # y_nmin = (1-p)
-            # x_nmin = ((p - p**x_nr)**2)
+            
 
             upper_bound = r + np.sqrt(sem) * max(x_nr, 1)
             lower_bound = r - np.sqrt(sem)
@@ -1183,7 +1057,7 @@ class Security():
                 xn_indicator = 1.0
             else:
                 xn_indicator = round(p_xnr - p_ynr, 8)
-                # xn_indicator = round(p_xnr - p_ynr,8) + ((p - p**x_nr_sma) + abs(e_r))**2
+               
 
             if p_ynr > y_n_ecdfmaxt:
                 yn_indicator = 1.0
@@ -1191,7 +1065,7 @@ class Security():
                 yn_indicator = -1.0
             else:
                 yn_indicator = round(p_ynr - p_xnr, 8)
-                # yn_indicator = round(p_ynr - p_xnr,8) + ((1-y_nr_sma) - abs(e_r))**2
+                
 
             if p <= .49:
                 yn_indicator = p_u - p_tmp
@@ -1208,7 +1082,7 @@ class Security():
 
             if type(indicator) != float:
                 indicator = float(indicator)
-            # p_i = (p_u - list_dict['p_u'][i-1]) * sigma
+            
             p_i = (p_u - p_d)  # * sigma
             if i > T:
                 p_i = np.mean(list_dict['p_u'][i - 5:]) - np.mean(list_dict['p_d'][i - 5:])
@@ -1326,7 +1200,7 @@ class Security():
             list_dict['x_necdf'].append(p_xnr)
             list_dict['y_necdf'].append(p_ynr)
         end3 = time.time()
-        # print(f"Prob Check 2 Runtime = {end3 - start1:.2f} seconds\n")
+        
 
         for x in lists:
             col = list_dict[x]
@@ -1338,7 +1212,7 @@ class Security():
 
         self.probability_analysis_df = df
         end1 = time.time()
-        # print(f"Done, Analyze Probability Runtime = {end1 - start1:.2f} seconds\n")
+        
         return df
 
 
@@ -1397,7 +1271,6 @@ class Security():
 
         ax4 = plt.subplot(414, sharex=ax1)
         ax4.plot(x, df['p_i'], label='p_i', color='lime')
-        #ax4.plot(x, df['downsum'], label='Down Sum', color='red')
         plt.legend()
         plt.tight_layout()
 
@@ -1417,7 +1290,6 @@ class Security():
         plt.legend()
 
         ax2 = plt.subplot(512, sharex=ax1)
-        # ax2.plot(x, df['y_nr'], label = 'y_nr',color='paleturquoise')
         ax2.plot(x, df['y_nr_sma'], label='y_nr sma', color='darkturquoise')
         plt.legend()
 
@@ -1428,10 +1300,7 @@ class Security():
         plt.legend()
 
         ax4 = plt.subplot(513, sharex=ax1)
-        # ax4.plot(x, df['x_nr'], label = 'x_nr',color='mediumseagreen')
         ax4.plot(x, df['x_nr_sma'], label='x_nr sma', color='seagreen')
-        # ax4.axhline(y=0, color='white')
-        # ax4.axhline(y=x_nmax, color='white',alpha=.5)
         plt.legend()
 
         ax5 = plt.subplot(515, sharex=ax1)
@@ -1461,7 +1330,6 @@ class Security():
 
         ax2.plot(x, df['p_i'], label='p_i', color='cornflowerblue')
         ax2.legend()
-        # ax3.plot(x, df['p_d'],label = 'p_d', color='firebrick')
         ax3.legend()
         plt.tight_layout()
 
@@ -1503,157 +1371,6 @@ class Security():
 
         plt.show()
 
-    def graph_probability_analysis_plotly(self, figsize=(15, 8)):
-        """
-
-        :param figsize:  (Default value = (15)
-        :param 8): 
-
-        """
-
-        try:
-            df = self.probability_analysis_df
-        except:
-            df = self.analyze_probability()
-
-        df['indicator'] = np.where(df['indicator'] < -2, -2,df['indicator'])
-        x_nmax = self.x_nmax
-        x_nmin = self.x_nmin
-        y_nmin = self.y_nmin
-        x_nr_smamax = self.x_nr_smamax
-        pricemin = df['Price'].min() * .9
-        df['indicator_0'] = np.where(df['indicator'] < 0, df['Price'], 0)
-        df['indicator_1'] = np.where(df['indicator'] > 0, df['Price'], 0)
-        df['indicator_2'] = np.where(df['indicator'] < -1, df['Price'], 0)
-        df['indicator_3'] = np.where(df['indicator'] > .6, df['Price'], 0)
-        color = '#2E86C1'
-        fig = make_subplots(rows=3, cols=1, shared_xaxes=True, vertical_spacing=0.02)
-        x = df['Date']
-        # Subplot 1
-        fig.add_trace(
-            go.Scatter(
-                x=x,
-                y=df['Price'],
-                mode='lines',
-                name='Price',
-                line=dict(color="#F1C40F"),
-            ), row=1, col=1
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=x,
-                y=df['indicator_1'],
-                mode='none',
-                name='Up',
-                line=dict(color="#2ECC71"),
-                fill='tozeroy',
-                fillcolor='rgba(40, 180, 99,.2)',
-                opacity=1,
-            ), row=1, col=1
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=x,
-                y=df['indicator_0'],
-                mode='none',
-                name='Down',
-                line=dict(color='rgba(192, 57, 43)'),
-                fill='tozeroy',
-                fillcolor='rgba(192, 57, 43 ,.2)',
-                opacity=1,
-            ), row=1, col=1
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=x,
-                y=df['indicator_3'],
-                mode='lines',
-                name='Up Mode',
-                line=dict(color='rgba(40, 180, 99,1)'),
-                fill='tozeroy',
-                fillcolor='rgba(40, 180, 99,.3)',
-                opacity=1,
-                showlegend=False,
-                connectgaps=False
-            ), row=1, col=1,
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=x,
-                y=df['indicator_2'],
-                mode='lines',
-                name='Down Mode',
-                line=dict(color='rgba(192, 57, 43,1)'),
-                fill='tozeroy',
-                fillcolor='rgba(192, 57, 43 ,.3)',
-                opacity=1,
-                showlegend=False,
-                connectgaps=False
-            ), row=1, col=1
-        )
-        fig.update_layout(title_text=self.name)
-
-        # Subplot 2
-        fig.add_trace(
-            go.Scatter(
-                x=x,
-                y=df['indicator'],
-                mode='lines',
-                name='Indicator',
-            ), row=2, col=1
-        )
-        fig.add_hline(y=1, line_color="rgba(35, 155, 86,.6)")
-        fig.add_hline(y=-1, line_color='rgba(192, 57, 43 ,.6)')
-        fig.add_trace(
-            go.Scatter(
-                x=x,
-                y=df['mode'],
-                mode='lines',
-                name='Mode',
-                line=dict(color="#FFFFFF"),
-            ), row=2, col=1
-        )
-
-        # Subplot 3
-        fig.add_trace(
-            go.Scatter(
-                x=x,
-                y=df['p_u'].rolling(window=7).mean(),
-                mode='lines',
-                name='Up Indicator',
-                ), row=3, col=1
-        )
-        fig.add_hline(y=.5, line_color="rgba(255, 255, 255,.6)")
-
-
-
-
-
-
-
-
-        fig.update_xaxes(
-            row=1,
-            col=1,
-            rangeslider_visible=False,
-            rangeselector=dict(
-                buttons=list([
-                    dict(count=1, label="1m", step="month", stepmode="backward"),
-                    dict(count=6, label="6m", step="month", stepmode="backward"),
-                    dict(count=1, label="YTD", step="year", stepmode="todate"),
-                    dict(count=1, label="1y", step="year", stepmode="backward"),
-                    dict(step="all")
-                ])
-            ),
-            rangeselector_bgcolor='#595959',
-        )
-        fig.update_yaxes(autorange=True,fixedrange=False)
-        fig.show()
-        return fig
-
 
     def trade(self, trading_fees=10):
         """
@@ -1687,58 +1404,6 @@ class Security():
         return None
 
 
-    def graph_return_analysis(self):
-        """ """
-        df = self.ito_df
-        df['n_dev'] = np.where(df['Returns'] <= 0,df['Returns'],0)
-        df['p_dev'] = np.where(df['Returns'] > 0,df['Returns'],0)
-        
-        fig = plt.figure(figsize=(15,8))
-        ax1 = plt.subplot(311)
-        
-        x = df['Date']
-        yn = np.log1p(df['n_dev'])
-        ynm = np.log1p(df['n_dev']).expanding().mean()
-        cynm = np.cumsum(np.log1p(df['n_dev']).expanding().mean())
-        cyn = np.cumsum(np.log1p(df['n_dev']))
-        yp = np.log1p(df['p_dev'])
-        ypm = np.log1p(df['p_dev']).expanding().mean()
-        cypm = np.cumsum(np.log1p(df['p_dev']).expanding().mean())
-        cyp = np.cumsum(np.log1p(df['p_dev']))
-        pdiff = cypm - cyp
-        ndiff = cynm - cyn
-        sum_diff = pdiff + ndiff
-
-        plt.title(str(self.ticker))
-        ax1.plot(x, df['Price'],label='Price')
-        #ax1.plot(x, yn)
-        #ax1.plot(x, ynm)
-        #ax1.plot(x, cyn)
-        #ax1.plot(x, cynm)
-        #ax1.plot(x, cynm - cyn)
-        plt.legend()
-        ax2 = plt.subplot(312)
-        
-        ax2.plot(x, sum_diff,label='sum diff')
-        ax2.plot(x, sum_diff.expanding().mean(),label = 'sum diff mean')
-        ax2.plot(x, sum_diff.expanding().median(),label = 'sum diff median')
-        ax2.axhline(y=0)
-        plt.legend()
-        #ax2.plot(x, yp)
-        #ax2.plot(x, ypm)
-        #ax2.plot(x, cyp)
-        #ax2.plot(x, cypm)
-        #ax2.plot(x, cypm - cyp)
-
-
-        ax3 = plt.subplot(313)
-        
-        ax3.plot(x, pdiff,label='Positive Diff',color='green')
-        ax3.plot(x, ndiff,label='Negative Diff',color='red')
-        ax3.plot(x, sum_diff,label='Sum Diff',color='cornflowerblue')
-        ax3.axhline(y=0)
-
-        plt.legend()
     
 
     def calc_price_volume(self):
@@ -1789,11 +1454,6 @@ class Security():
         df = df.drop(columns=['Date'])
         df.replace(0,np.nan)
         
-        #print(df)
-        #df = df[['Date','Price','Volume']]
-        #x = pd.to_datetime(df.index,format="%Y-%m-%d").strftime("%d-%m-%Y")
-        #x = df.index
-        
         x = []
         if len(df) > 365 * 1.5:
             denom = 365
@@ -1806,33 +1466,14 @@ class Security():
         for i in np.arange(len(df)):
             x_t = [i/denom]
             for ii in np.arange(len(df.columns)-1):
-                #value = df.iloc[i,ii]
-                #print(value)
                 if i != len(df):
                     x_t.append(i/denom)
                 else:
                     x_t.append(np.nan)
             x.append(x_t)
-        #print(df.shape)
         x = np.array(x)
-        #x = np.array([x for x in np.arange(len(df))])
         y = np.array([list(df.columns)[:] for i in np.arange(len(df))])
-        #y = np.array(round(self.ito_df['Price'],-1))
-        #print(df.iloc[1,1:])
         z = np.array([df.iloc[i,:] for i in np.arange(len(df)) ])
-        #y = np.where(y==0,np.nan,y)
-        #print(f"x {x.shape}\ny {y.shape}\nz {z.shape}")
-        #print(f"x {x}\ny {y}\nz {z}")
-        print(df)
-        print(len(x[-1]))
-        print(len(y[-1]))
-        print(len(z[-1]))
-        print(x[-1])
-        print(y[-1])
-        print(z[-1])
-        print(y.shape)
-        #z = df['Volume'] * (.5 + df['Returns'])
-        #print(z)
         fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
         fig.update_layout(scene = dict(
                     xaxis_title='Time',
@@ -1842,7 +1483,6 @@ class Security():
         fig.update_layout(title=f'{self.ticker}', autosize=False,width=1500, height=750, margin=dict(l=65, r=50, b=65, t=90))
         camera = dict(eye=dict(x=0., y=2.5, z=0.))
         fig.update_layout(scene_camera=camera)
-        #fig = px.scatter_3d(df, x=x, y=y, z=z,color=y)
         if show == True:
             fig.show()
         fig.write_html(f"./3dmodels/{self.ticker}.html")
@@ -1855,7 +1495,6 @@ class Security():
         df = self.ito_df
         df['Returns_Std'] = df['Returns'].expanding().std()
         df['two sigma'] = df['Returns_Std'] * 2
-        #df['outlier'] = np.where(abs(df['Returns']) >= df['two sigma'],1,0)
         df['outlier'] = [0 for x in np.arange(len(df))]
         df['outlier returns'] = [0 for x in np.arange(len(df))]
 
